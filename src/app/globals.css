@@ -8,57 +8,57 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 139 45% 90%; /* Frosted Mint */
+    --foreground: 4 9% 38%; /* Taupe Grey */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 4 9% 38%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 142.1 76.2% 36.3%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --popover-foreground: 4 9% 38%;
+    --primary: 95 22% 50%; /* Ash Grey - darker for primary */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 14% 90%; /* Alabaster Grey - lighter */
+    --secondary-foreground: 4 9% 38%;
+    --muted: 180 14% 95%; /* Alabaster Grey - even lighter */
+    --muted-foreground: 4 9% 48%;
+    --accent: 148 100% 91%; /* Frosted Mint 2 */
+    --accent-foreground: 4 9% 38%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 142.1 76.2% 36.3%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --border: 180 14% 83%; /* Alabaster Grey */
+    --input: 180 14% 83%;
+    --ring: 95 22% 50%;
+    --chart-1: 95 22% 62%;
+    --chart-2: 139 35% 75%;
+    --chart-3: 4 12% 50%;
+    --chart-4: 148 60% 81%;
+    --chart-5: 180 10% 73%;
     --radius: 0.5rem;
   }
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 142.1 76.2% 36.3%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 4 9% 18%; /* Dark Taupe */
+    --foreground: 180 14% 83%; /* Alabaster Grey */
+    --card: 4 9% 22%;
+    --card-foreground: 180 14% 83%;
+    --popover: 4 9% 18%;
+    --popover-foreground: 180 14% 83%;
+    --primary: 95 22% 62%; /* Ash Grey */
+    --primary-foreground: 4 9% 18%;
+    --secondary: 4 9% 25%;
+    --secondary-foreground: 180 14% 83%;
+    --muted: 4 9% 25%;
+    --muted-foreground: 180 14% 63%;
+    --accent: 139 35% 65%; /* Frosted Mint */
+    --accent-foreground: 4 9% 18%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 142.1 76.2% 36.3%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: 4 9% 30%;
+    --input: 4 9% 30%;
+    --ring: 95 22% 62%;
+    --chart-1: 95 22% 62%;
+    --chart-2: 139 35% 65%;
+    --chart-3: 4 12% 70%;
+    --chart-4: 148 70% 71%;
+    --chart-5: 180 10% 63%;
   }
 }
 
