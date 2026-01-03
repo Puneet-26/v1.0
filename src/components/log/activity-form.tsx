@@ -50,12 +50,12 @@ export default function ActivityForm() {
                 <h3 className="text-lg font-medium text-primary flex items-center gap-2"><Car size={20}/> Transport</h3>
                 <div className="space-y-2">
                     <Label htmlFor="driveDistance">Car travel (km/week)</Label>
-                    <Input id="driveDistance" name="driveDistance" type="number" placeholder="e.g., 50" defaultValue={0} />
+                    <Input id="driveDistance" name="driveDistance" type="number" placeholder="e.g., 50" defaultValue={0} min="0" />
                     {state.errors?.driveDistance && <p className="text-sm text-destructive">{state.errors.driveDistance}</p>}
                 </div>
                 <div className="space-y-2">
                     <Label htmlFor="publicTransportDistance">Public transport (km/week)</Label>
-                    <Input id="publicTransportDistance" name="publicTransportDistance" type="number" placeholder="e.g., 20" defaultValue={0} />
+                    <Input id="publicTransportDistance" name="publicTransportDistance" type="number" placeholder="e.g., 20" defaultValue={0} min="0" />
                      {state.errors?.publicTransportDistance && <p className="text-sm text-destructive">{state.errors.publicTransportDistance}</p>}
                 </div>
             </div>
@@ -64,12 +64,12 @@ export default function ActivityForm() {
                 <h3 className="text-lg font-medium text-primary flex items-center gap-2"><Home size={20}/> Home Energy</h3>
                 <div className="space-y-2">
                     <Label htmlFor="electricityUsage">Electricity usage (kWh/week)</Label>
-                    <Input id="electricityUsage" name="electricityUsage" type="number" placeholder="e.g., 70" defaultValue={0} />
+                    <Input id="electricityUsage" name="electricityUsage" type="number" placeholder="e.g., 70" defaultValue={0} min="0" />
                     {state.errors?.electricityUsage && <p className="text-sm text-destructive">{state.errors.electricityUsage}</p>}
                 </div>
                 <div className="space-y-2">
                     <Label htmlFor="naturalGasUsage">Natural gas for heating (kWh/week)</Label>
-                    <Input id="naturalGasUsage" name="naturalGasUsage" type="number" placeholder="e.g., 100" defaultValue={0} />
+                    <Input id="naturalGasUsage" name="naturalGasUsage" type="number" placeholder="e.g., 100" defaultValue={0} min="0" />
                     {state.errors?.naturalGasUsage && <p className="text-sm text-destructive">{state.errors.naturalGasUsage}</p>}
                 </div>
             </div>
@@ -97,7 +97,7 @@ export default function ActivityForm() {
                 <h3 className="text-lg font-medium text-primary flex items-center gap-2"><Trash2 size={20}/> Waste</h3>
                 <div className="space-y-2">
                     <Label htmlFor="wasteAmount">General waste produced (kg/week)</Label>
-                    <Input id="wasteAmount" name="wasteAmount" type="number" placeholder="e.g., 5" defaultValue={0} />
+                    <Input id="wasteAmount" name="wasteAmount" type="number" placeholder="e.g., 5" defaultValue={0} min="0" />
                     {state.errors?.wasteAmount && <p className="text-sm text-destructive">{state.errors.wasteAmount}</p>}
                 </div>
             </div>
