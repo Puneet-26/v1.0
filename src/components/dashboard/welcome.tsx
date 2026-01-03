@@ -32,7 +32,7 @@ export default function Welcome() {
                 </div>
                 <CardContent className="p-8 bg-gray-50">
                     <p className="text-lg mb-6 text-gray-700">
-                        It looks like you haven&apos;t logged any activity yet. Get started by calculating your first weekly carbon footprint.
+                        It looks like you haven't logged any activity yet. Get started by calculating your first weekly carbon footprint.
                     </p>
                     <Button asChild size="lg">
                         <Link href="/log">
