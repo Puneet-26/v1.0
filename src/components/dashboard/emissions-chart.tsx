@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Pie, PieChart, Cell } from 'recharts';
@@ -23,11 +24,11 @@ interface EmissionsChartProps {
 }
 
 const chartConfig = {
-    transport: { label: 'Transport', color: '#609966' },
-    electricity: { label: 'Electricity', color: '#9DC08B' },
-    heating: { label: 'Heating', color: '#EDF1D6' },
-    food: { label: 'Food', color: '#FFC436' },
-    waste: { label: 'Waste', color: '#F29727' },
+    transport: { label: 'Transport', color: 'hsl(var(--chart-1))' },
+    electricity: { label: 'Electricity', color: 'hsl(var(--chart-2))' },
+    heating: { label: 'Heating', color: 'hsl(var(--chart-3))' },
+    food: { label: 'Food', color: 'hsl(var(--chart-4))' },
+    waste: { label: 'Waste', color: 'hsl(var(--chart-5))' },
 } satisfies ChartConfig;
 
 
@@ -60,16 +61,28 @@ export default function EmissionsChart({ emissions }: EmissionsChartProps) {
                             innerRadius="60%"
                             strokeWidth={5}
                             labelLine={false}
-                            label={({ name, percent, cornerRadius, tooltipPayload, ...props }) => {
+                            label={({
+                                cx,
+                                cy,
+                                midAngle,
+                                outerRadius,
+                                percent,
+                                name,
+                                textAnchor
+                            }) => {
                                 const percentage = Math.round((percent || 0) * 100);
                                 if (percentage < 5) return null;
+                                
+                                const RADIAN = Math.PI / 180;
+                                const x = cx + (outerRadius + 10) * Math.cos(-midAngle * RADIAN);
+                                const y = cy + (outerRadius + 10) * Math.sin(-midAngle * RADIAN);
+
                                 return (
                                     <text
-                                        {...props}
-                                        x={props.cx + (props.outerRadius + 10) * Math.cos(-props.midAngle * (Math.PI / 180))}
-                                        y={props.cy + (props.outerRadius + 10) * Math.sin(-props.midAngle * (Math.PI / 180))}
+                                        x={x}
+                                        y={y}
                                         fill="hsl(var(--foreground))"
-                                        textAnchor={props.textAnchor}
+                                        textAnchor={textAnchor}
                                         dominantBaseline="central"
                                         className="text-xs"
                                     >
