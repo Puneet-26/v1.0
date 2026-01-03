@@ -61,7 +61,7 @@ export default function EmissionsChart({ emissions }: EmissionsChartProps) {
                             innerRadius="60%"
                             strokeWidth={5}
                             labelLine={false}
-                            label={({ cx, cy, midAngle, outerRadius, percent, name, textAnchor, ...rest }) => {
+                            label={({ cx, cy, midAngle, outerRadius, percent, name, ...rest }) => {
                                 const percentage = Math.round((percent || 0) * 100);
                                 if (percentage < 5) return null;
                                 
@@ -74,10 +74,9 @@ export default function EmissionsChart({ emissions }: EmissionsChartProps) {
                                         x={x}
                                         y={y}
                                         fill="hsl(var(--foreground))"
-                                        textAnchor={textAnchor}
+                                        textAnchor={x > cx ? 'start' : 'end'}
                                         dominantBaseline="central"
                                         className="text-xs"
-                                        {...rest}
                                     >
                                         {`${chartConfig[name as keyof typeof chartConfig].label} (${percentage}%)`}
                                     </text>
