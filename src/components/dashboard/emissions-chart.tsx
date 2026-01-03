@@ -14,6 +14,7 @@ import {
     ChartTooltipContent,
     ChartLegend,
     ChartLegendContent,
+    type ChartConfig,
 } from '@/components/ui/chart';
 import type { EmissionData } from '@/lib/types';
 
@@ -21,22 +22,23 @@ interface EmissionsChartProps {
     emissions: EmissionData;
 }
 
-export default function EmissionsChart({ emissions }: EmissionsChartProps) {
-    const chartData = [
-        { category: 'Transport', value: emissions.transport, fill: 'var(--color-transport)' },
-        { category: 'Electricity', value: emissions.electricity, fill: 'var(--color-electricity)' },
-        { category: 'Heating', value: emissions.heating, fill: 'var(--color-heating)' },
-        { category: 'Food', value: emissions.food, fill: 'var(--color-food)' },
-        { category: 'Waste', value: emissions.waste, fill: 'var(--color-waste)' },
-    ].filter(d => d.value > 0);
+const chartConfig = {
+    transport: { label: 'Transport', color: 'hsl(var(--chart-1))' },
+    electricity: { label: 'Electricity', color: 'hsl(var(--chart-2))' },
+    heating: { label: 'Heating', color: 'hsl(var(--chart-3))' },
+    food: { label: 'Food', color: 'hsl(var(--chart-4))' },
+    waste: { label: 'Waste', color: 'hsl(var(--chart-5))' },
+} satisfies ChartConfig;
 
-    const chartConfig = {
-        transport: { label: 'Transport', color: 'hsl(var(--chart-1))' },
-        electricity: { label: 'Electricity', color: 'hsl(var(--chart-2))' },
-        heating: { label: 'Heating', color: 'hsl(var(--chart-3))' },
-        food: { label: 'Food', color: 'hsl(var(--chart-4))' },
-        waste: { label: 'Waste', color: 'hsl(var(--chart-5))' },
-    };
+
+export default function EmissionsChart({ emissions }: EmissionsChartProps) {
+    const chartData = Object.entries(emissions)
+        .filter(([key]) => key in chartConfig)
+        .map(([key, value]) => ({
+            name: key,
+            value,
+            fill: `hsl(var(--chart-${Object.keys(chartConfig).indexOf(key) + 1}))`,
+        })).filter(d => d.value > 0);
 
     return (
         <Card>
@@ -49,38 +51,26 @@ export default function EmissionsChart({ emissions }: EmissionsChartProps) {
                     <PieChart>
                         <ChartTooltip
                             cursor={false}
-                            content={<ChartTooltipContent hideLabel />}
+                            content={<ChartTooltipContent />}
                         />
                         <Pie
                             data={chartData}
                             dataKey="value"
-                            nameKey="category"
+                            nameKey="name"
                             innerRadius="60%"
                             strokeWidth={5}
                             labelLine={false}
-                            label={({ payload, percent, ...props }) => {
-                                const { cx, cy, midAngle, outerRadius, textAnchor } = props as any;
-                                const { category } = payload as any;
+                            label={({ name, percent }) => {
                                 const percentage = Math.round((percent || 0) * 100);
                                 if (percentage < 5) return null;
-                                return (
-                                <text
-                                    x={cx + (outerRadius + 10) * Math.cos(-midAngle * (Math.PI / 180))}
-                                    y={cy + (outerRadius + 10) * Math.sin(-midAngle * (Math.PI / 180))}
-                                    textAnchor={textAnchor}
-                                    dominantBaseline="central"
-                                    className="fill-foreground text-xs"
-                                >
-                                    {category} ({percentage}%)
-                                </text>
-                                );
+                                return `${chartConfig[name as keyof typeof chartConfig].label} (${percentage}%)`;
                             }}
                         >
                             {chartData.map((entry) => (
-                                <Cell key={`cell-${entry.category}`} fill={entry.fill} />
+                                <Cell key={`cell-${entry.name}`} fill={entry.fill} />
                             ))}
                         </Pie>
-                        <ChartLegend content={<ChartLegendContent nameKey="category" />} />
+                        <ChartLegend content={<ChartLegendContent />} />
                     </PieChart>
                 </ChartContainer>
             </CardContent>
