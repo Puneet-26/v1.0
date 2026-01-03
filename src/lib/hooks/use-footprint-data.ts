@@ -10,15 +10,23 @@ export function useFootprintData() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    try {
-      const storedData = localStorage.getItem(STORAGE_KEY);
-      if (storedData) {
-        setRecords(JSON.parse(storedData));
+    // This function will run only on the client side
+    const loadData = () => {
+      try {
+        const storedData = localStorage.getItem(STORAGE_KEY);
+        if (storedData) {
+          setRecords(JSON.parse(storedData));
+        }
+      } catch (error) {
+        console.error('Failed to load data from local storage:', error);
+      } finally {
+        setIsLoaded(true);
       }
-    } catch (error) {
-      console.error('Failed to load data from local storage:', error);
-    } finally {
-      setIsLoaded(true);
+    };
+
+    // Ensure localStorage is not accessed on the server
+    if (typeof window !== 'undefined') {
+      loadData();
     }
   }, []);
 

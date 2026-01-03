@@ -30,7 +30,9 @@ export default function ActivityForm() {
             const newRecord: FootprintRecord = {
               id: new Date().toISOString(),
               date: new Date().toISOString(),
-              ...state.data,
+              activity: state.data.activity,
+              emissions: state.data.emissions,
+              tips: state.data.tips,
             };
             addRecord(newRecord);
             formRef.current?.reset();
